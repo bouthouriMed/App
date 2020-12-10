@@ -66,7 +66,7 @@ function AddBook({history}) {
       <div className="form-floating">
         <label style={{ color: "white" }}>Upload book</label>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <input type="file" onChange={}/>
+          <input type="file" />
           <button
             type="submit"
             className="btn btn-success"
