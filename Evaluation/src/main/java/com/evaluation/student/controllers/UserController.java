@@ -1,6 +1,11 @@
 package com.evaluation.student.controllers;
 
-import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.evaluation.student.entities.AppUser;
 import com.evaluation.student.entities.Compte;
@@ -11,18 +16,15 @@ import com.evaluation.student.services.CompteService;
 
 @RestController
 @RequestMapping("/Rest/Api/user")
-@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 	
-
-	private final AppUserService appUserService ;
-	private final CompteService compteService;
-
-	public UserController(AppUserService appUserService, CompteService compteService) {
-		this.appUserService = appUserService;
-		this.compteService = compteService;
-	}
-
+	@Autowired
+	AppUserService appUserService;
+	
+	@Autowired
+	CompteService compteService;
+	
+	@CrossOrigin(origins = "*" ) 
 	@RequestMapping(method = RequestMethod.POST, value = "/signUp")
 	public AppUser signUp(@RequestBody AddUserRequest addUserRequest) {
 		
@@ -47,6 +49,7 @@ public class UserController {
 	}
 	
 	
+	@CrossOrigin(origins = "*" ) 
 	@RequestMapping(method = RequestMethod.POST, value = "/signIn")
 	public AppUser signIn(@RequestBody AuthRequest authRequest) {
 		try {

@@ -18,8 +18,15 @@ body {
 }
 .container {
   margin: 5% auto;
-  width: 80%;
+  width: 90%;
   height: 100%;
+}
+
+.app-container {
+  margin: 5% auto;
+  width: 90%;
+
+  height: 100vh;
 }
 
 .title {
@@ -40,5 +47,19 @@ body {
 }
 
 form {
-  color: #fff
+  color: #fff;
+}
+
+.btn-add-admin {
+  margin-left: 15px;
+}
+
+.book-store {
+  margin-top: 50px ;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+ 
 }

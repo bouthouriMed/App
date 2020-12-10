@@ -21,6 +21,8 @@ function Login({history}) {
 
     if (res.data) {
       localStorage.setItem("isAuth", true);
+      localStorage.setItem("user", JSON.stringify(res.data));
+      console.log(res.data)
       toast.success(`Welcome ${res.data.nom}`)
       history.push('/');
     } else {

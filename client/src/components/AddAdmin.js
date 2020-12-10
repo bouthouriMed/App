@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 import { Link, Redirect } from "react-router-dom";
-import {toast} from 'react-toastify';
+import { toast } from "react-toastify";
 
-function Register({history}) {
+function Register({ history }) {
   const [formData, setFormData] = useState({
     nom: "",
     prenom: "",
@@ -12,7 +12,7 @@ function Register({history}) {
     tel: "",
     login: "",
     mdp: "",
-    role: "user"
+    role: "admin"
   });
 
   const { nom, prenom, email, age, tel, login, mdp } = formData;
@@ -24,27 +24,22 @@ function Register({history}) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await axios.post('http://localhost:8090/Rest/Api/user/signUp', formData)
+    const res = await axios.post(
+      "http://localhost:8090/Rest/Api/user/signUp",
+      formData
+    );
 
     if (res.data) {
-      localStorage.setItem("isAuth", true);
-      localStorage.setItem("user", JSON.stringify(res.data));
-      toast.success(`Welcome ${res.data.nom}`)
-      history.push('/');
+      toast.success(`Admin ${res.data.nom} has been added`);
+      history.push("/");
     }
   };
 
-  const isAuth = localStorage.getItem('isAuth');
-
-  if(isAuth) {
-    return <Redirect to='/' />
-  }
-
   return (
     <div className="container">
-      <h1 className="sign-in">Sign up</h1>
+      <h1 className="sign-in">Add admin</h1>
       <form onSubmit={handleSubmit}>
-      <div className="form-group">
+        <div className="form-group">
           <label for="nom">Name</label>
           <input
             type="text"
@@ -126,10 +121,8 @@ function Register({history}) {
           />
         </div>
 
-        <small className="form-text">Already a member ?<Link to='/login'>  Sign in here</Link></small>
-
         <button type="submit" className="btn btn-primary mt-2">
-          Register
+          Add admin
         </button>
       </form>
     </div>

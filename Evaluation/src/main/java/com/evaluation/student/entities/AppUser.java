@@ -1,12 +1,19 @@
 package com.evaluation.student.entities;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "app_user")
@@ -24,6 +31,10 @@ public class AppUser {
 	private String age;
 	private String tel;
 	private String role;
+	
+	@OneToMany(mappedBy = "appUser", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private Set<Livre> livres;
 	
 	
 
@@ -88,6 +99,14 @@ public class AppUser {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public Set<Livre> getLivres() {
+		return livres;
+	}
+
+	public void setLivres(Set<Livre> livres) {
+		this.livres = livres;
 	}
 
 

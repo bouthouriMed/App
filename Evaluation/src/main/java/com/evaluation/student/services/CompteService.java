@@ -13,7 +13,7 @@ public class CompteService {
 	CompteRepository compteRepository;
 	
 	public Compte authentification(String login, String mdp) {
-		return compteRepository.authentification(login, mdp).get(0);
+		return compteRepository.authentification(login, mdp);
 	}
 	
 	public Compte addCompte(Compte compte) {
